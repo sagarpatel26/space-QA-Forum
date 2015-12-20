@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Space</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<script src="js/jquery.js"></script>
+    <script src="js/jquery-scrollto.js"></script>
+    <script src="js/index-page.js"></script>
+	<link rel="stylesheet" href="css/space.index.tmpl.css">
+</head>
+<body>
+    <nav class="navbar navbar-default" style="background-color: #f7ecb5;box-shadow: 2px 2px 1px #269abc;">
+     	<div class="container" style="margin-left: 8%;">
+
+			<div class="navbar-header">
+				<a id="topbar" class="navbar-brand" href="#"><img src="img-small.png" width="160" height="60" style="margin: -20px 0 0 0; position: relative;"></a>
+			</div>
+
+			<div>
+				<ul class="nav navbar-nav">
+                    <li id="search-bar">
+                        <form>
+                            <input type="search" id="search-form" size="40" placeholder=" looking for something ?" />
+                        </form>
+                    </li>
+                </ul>
+			</div>
+			<a href="profile.php?username=<?php $user=new _user(); $user->_get_fdb_ref_uid($uid); echo $user->getUsername();?>"><?php echo $user->getUsername();?></a>			
+            <div style="margin: 15px 0 0 70%">
+                <a href="scripts/logout.php">logout</a>
+            </div>
+		</div>
+	</nav>
+    <div id="ask-question-block">
+
+            <span style="font-size: xx-large; padding: 1.5%">Ask your Question here:</span><br>
+            <form style="padding: 1.5%" action="scripts/addnewquestion.php" method="POST">
+                <input id="new-question" type="text" name="qd" size="97" onchange="checkQuestion()"/><br/>
+                <input type="submit" style="margin: 1% 1% 0 90%;" class="btn btn-info" value="Post it!" >
+            </form>
+            <?php if(isset($_COOKIE['zero'])){echo 'Minimum size of the Question is 10!!';}?>
+    </div>
+
+    <div id="questions-list">
+
